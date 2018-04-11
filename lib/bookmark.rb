@@ -8,8 +8,9 @@ class Bookmark
                    PG.connect(dbname: 'bookmark_manager')
                  end
     result = connection.exec('SELECT * FROM bookmarks')
-    result.map { |bookmark| bookmark['title'] }
+    p result.map { |bookmark| [bookmark['url'], bookmark['title']] }
   end
+
 
   def self.create(link, title)
     return false unless is_url?(link)

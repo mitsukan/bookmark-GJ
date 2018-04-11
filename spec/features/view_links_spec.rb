@@ -11,4 +11,11 @@ feature 'View links' do
     expect(page).to have_content 'test2'
     expect(page).to have_content 'test3'
   end
+
+scenario 'A user can click on a link in the database' do
+    Bookmark.create('http://test1.com', 'test1')
+    visit ('/bookmarks')
+    click_link 'test1'
+end
+
 end
