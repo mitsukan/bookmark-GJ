@@ -104,3 +104,7 @@ I then also wrote a test for the `add_spec.rb`, checking for an error message th
 #### Wrapping database data in Program Objects
 
 We first started to rewrite the tests in order to meet the new specifications outlined in the challenge.  While doing so, we have realised that Gadiza's RSpec was not clearing the test database for each test, and was only doing it at the beginning of the run. We sorted out the syntaxing mistake that she had, and then also changed the loop in the `spec_helper` from `require_relative` to `load` in order to get it to work.
+
+From there, we changed some of tests to reflect the first part of the changes that was required in the challenge, showing titles instead of url. We made the corresponding database changes to both the normal one and the test one, and then amended the code.
+
+After that, we then looked into implementing the links to these titles. Again, after rewriting the tests, I changed the map function in the `bookmark.rb` in order to have both urls and titles in subarrays. From there, after changing the feature spec tests, I had the `.each` method in the `index.erb` to stick in the url and title into a `href` link format. 
