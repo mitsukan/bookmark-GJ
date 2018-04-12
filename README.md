@@ -110,4 +110,7 @@ From there, we changed some of tests to reflect the first part of the changes th
 After that, we then looked into implementing the links to these titles. Again, after rewriting the tests, I changed the map function in the `bookmark.rb` in order to have both urls and titles in subarrays. From there, after changing the feature spec tests, I had the `.each` method in the `index.erb` to stick in the url and title into a `href` link format.
 
 ### Day 4: Patryk and Jihin
- 
+
+#### CRUD
+
+I tested and implemented the `self.delete`. I realised that in order to implement the delete method so that it can take either a `url` or a `title`, the method would have to take 1 arguement and not 2. I took on Patryk's implementation of the `params`, and then using this `[:url]` and `[:title]` in order to specify where in the params hash I am looking at. I then had to change all the testing and other methods to meet this new way of entering arguments.
