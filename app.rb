@@ -8,11 +8,16 @@ class BookmarkManager < Sinatra::Base
   enable :sessions
 
   get '/' do
-    'Hello World'
+    redirect '/bookmarks'
   end
 
-  post '/bookmarks' do
-    flash[:notice] = 'You must submit a valid URL.' unless Bookmark.create(params['url'], params['title'])
+  post '/bookmarks/new' do
+    flash[:notice] = 'You must submit a valid URL.' unless Bookmark.create(params)
+    redirect '/bookmarks'
+  end
+
+  post '/bookmarks/remove' do
+    flash[:notice] = 'You must submit a valid URL.' unless Bookmark.delete(params['title'])
     redirect '/bookmarks'
   end
 
@@ -24,6 +29,10 @@ class BookmarkManager < Sinatra::Base
 
   get '/bookmarks/new' do
     erb :"bookmarks/new"
+  end
+
+  get '/bookmarks/remove' do
+    erb :"bookmarks/remove"
   end
 
   run! if app_file == $PROGRAM_NAME

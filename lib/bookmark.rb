@@ -12,14 +12,23 @@ class Bookmark
   end
 
 
-  def self.create(link, title)
-    return false unless is_url?(link)
+  def self.create(params)
+    return false unless is_url?(params[:url])
     connection = if ENV['RACK_ENV'] == 'test'
                    PG.connect(dbname: 'bookmark_manager_test')
                  else
                    PG.connect(dbname: 'bookmark_manager')
                 end
-    connection.exec("INSERT INTO BOOKMARKS(url, title) VALUES('#{link}', '#{title}')")
+    connection.exec("INSERT INTO BOOKMARKS(url, title) VALUES('#{params[:url]}', '#{params[:title]}')")
+  end
+
+  def self.delete(params)
+    connection = if ENV['RACK_ENV'] == 'test'
+                   PG.connect(dbname: 'bookmark_manager_test')
+                 else
+                   PG.connect(dbname: 'bookmark_manager')
+                end
+    connection.exec("DELETE FROM bookmarks WHERE url='#{params[:url]}' OR title='#{params[:title]}';")
   end
 
   private
